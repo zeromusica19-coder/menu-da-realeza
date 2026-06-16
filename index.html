@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sabor da Realeza 👑</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#140000;
+color:white;
+overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(
+rgba(80,0,0,0.86),
+rgba(20,0,0,0.92)
+),
+url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1974");
+background-size:cover;
+background-position:center;
+filter:blur(3px);
+transform:scale(1.1);
+z-index:-2;
+pointer-events:none;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top,
+rgba(255,0,0,0.25),
+transparent 60%);
+z-index:-1;
+pointer-events:none;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.35);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,0.08);
+z-index:999;
+}
+
+.logo{
+font-size:24px;
+font-family:'Cinzel',serif;
+font-weight:bold;
+color:#FFD700;
+}
+
+nav{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.nav-btn{
+padding:9px 16px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+background:rgba(255,215,0,0.12);
+color:#FFD700;
+border:1px solid rgba(255,215,0,0.3);
+transition:0.3s;
+}
+
+.nav-btn:hover{
+transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content{
+max-width:850px;
+}
+
+.hero h1{
+font-size:72px;
+margin-bottom:15px;
+text-shadow:0 0 20px rgba(255,0,0,0.4);
+}
+
+.hero h2{
+font-size:32px;
+font-family:'Cinzel',serif;
+color:#FFD700;
+margin-bottom:25px;
+}
+
+.hero p{
+font-size:17px;
+line-height:1.8;
+color:#ddd;
+margin-bottom:35px;
+}
+
+.hero button{
+padding:15px 34px;
+border:none;
+border-radius:40px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(45deg,#FFD700,#ffcc00);
+transition:0.3s;
+}
+
+.hero button:hover{
+transform:scale(1.06);
+}
+
+/* MENU */
+
+.menu{
+display:none;
+padding:110px 7%;
+}
+
+/* 🔥 CATEGORIAS EM CHIPS (MELHORADO) */
+.menu-top{
+display:flex;
+gap:10px;
+margin-bottom:25px;
+flex-wrap:wrap;
+overflow-x:auto;
+padding-bottom:5px;
+}
+
+.menu-top{
+justify-content:center;
+}
+
+.menu-select{
+width:100%;
+max-width:320px;
+padding:14px;
+border-radius:14px;
+border:1px solid rgba(255,215,0,0.3);
+background:rgba(0,0,0,0.4);
+color:#FFD700;
+font-weight:600;
+outline:none;
+cursor:pointer;
+appearance:none;
+}
+
+.menu-btn{
+padding:10px 16px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+background:rgba(255,215,0,0.12);
+color:#FFD700;
+border:1px solid rgba(255,215,0,0.3);
+white-space:nowrap;
+flex-shrink:0;
+}
+
+.category-title{
+font-size:30px;
+margin-top:50px;
+margin-bottom:20px;
+font-family:'Cinzel',serif;
+color:#FFD700;
+border-left:4px solid red;
+padding-left:12px;
+}
+
+/* 🔥 CARDS MELHORADOS */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+/* MOBILE: vira fila vertical compacta */
+@media(max-width:480px){
+.products{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:22px;
+overflow:hidden;
+backdrop-filter:blur(12px);
+transition:0.3s;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 20px rgba(255,0,0,0.2);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
+}
+
+.card-content h3{
+font-size:18px;
+margin-bottom:6px;
+color:#FFD700;
+}
+
+.card-content p{
+font-size:13px;
+line-height:1.5;
+color:#ddd;
+margin-bottom:10px;
+}
+
+.price{
+font-size:18px;
+font-weight:bold;
+}
+
+/* LOGIN */
+
+.login-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,0.88);
+z-index:3000;
+}
+
+.login-box{
+width:340px;
+padding:35px;
+background:rgba(255,255,255,0.06);
+border-radius:20px;
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:25px;
+font-family:'Cinzel',serif;
+color:#FFD700;
+}
+
+.login-box input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:10px;
+outline:none;
+}
+
+.login-box button{
+width:100%;
+padding:13px;
+margin-top:6px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.cancel-btn{
+background:#444;
+color:white;
+}
+
+/* ADMIN */
+
+.admin-panel{
+display:none;
+padding:110px 7%;
+}
+
+.admin-title{
+font-size:40px;
+font-family:'Cinzel',serif;
+color:#FFD700;
+margin-bottom:30px;
+}
+
+.admin-form{
+background:rgba(255,255,255,0.06);
+padding:25px;
+border-radius:22px;
+border:1px solid rgba(255,255,255,0.08);
+margin-bottom:25px;
+}
+
+.admin-form h3{
+margin-bottom:15px;
+color:#FFD700;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:10px;
+outline:none;
+}
+
+.admin-form button{
+padding:13px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+background:linear-gradient(45deg,#FFD700,#ffcc00);
+}
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+background:rgba(255,255,255,0.05);
+border-radius:16px;
+}
+
+th,td{
+padding:14px;
+text-align:left;
+border-bottom:1px solid rgba(255,255,255,0.08);
+font-size:14px;
+}
+
+th{
+color:#FFD700;
+}
+
+/* FOOTER */
+
+.footer-box{
+margin-top:50px;
+padding:20px;
+max-width:350px;
+background:rgba(0,0,0,0.35);
+border-left:3px solid gold;
+border-radius:14px;
+font-size:13px;
+}
+
+.footer-box h4{
+margin-top:10px;
+color:#FFD700;
+}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+.hero h1{font-size:46px;}
+.hero h2{font-size:24px;}
+.logo{font-size:18px;}
+}
+
+@media(max-width:480px){
+
+.card{
+display:flex;
+flex-direction:row;
+height:110px;
+overflow:hidden;
+}
+
+.card img{
+width:110px;
+height:110px;
+object-fit:cover;
+}
+
+.card-content{
+padding:10px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.card-content h3{
+font-size:14px;
+margin-bottom:4px;
+}
+
+.card-content p{
+font-size:11px;
+margin-bottom:4px;
+}
+
+.price{
+font-size:14px;
+}
+}
+
+/* 🔥 MOBILE EXTRA */
+@media(max-width:480px){
+.products{
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.card img{
+height:140px;
+}
+}
+
+/* 🔥 IMPORTANTE: LIBERAR CLIQUES */
+body::before,
+body::after{
+pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- RESTO DO TEU CÓDIGO FICA IGUAL -->
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+👑 SABOR DA REALEZA
+</div>
+
+<nav>
+
+<button
+class="nav-btn"
+onclick="openLogin()">
+Admin
+</button>
+
+<button
+class="nav-btn"
+id="logoutBtn"
+style="display:none;background:red;color:white;"
+onclick="logoutAdmin()">
+Sair
+</button>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="hero">
+
+<div class="hero-content">
+
+<h1>COMA COMO REI</h1>
+
+<h2>Menu da Realeza</h2>
+
+<p>
+Os melhores hambúrgueres, pizzas,
+e bebidas em um ambiente
+luxuoso e moderno.
+</p>
+
+<button onclick="openMenu()">
+🍽 VER CARDÁPIO
+</button>
+
+</div>
+
+</section>
+
+<!-- MENU -->
+
+<section class="menu" id="menu">
+
+<div class="menu-top">
+
+<select id="categorySelect" class="menu-select" onchange="filterByCategory()">
+<option value="all">Todas as categorias</option>
+</select>
+
+</div>
+
+<button
+class="menu-btn"
+onclick="goHome()">
+
+← Página Inicial
+
+</button>
+
+</div>
+
+<div id="menuContainer"></div>
+
+</section>
+
+<!-- LOGIN -->
+
+<div class="login-screen" id="loginScreen">
+
+<div class="login-box">
+
+<h2>👑 ADMIN</h2>
+
+<input
+type="email"
+id="user"
+placeholder="Email do administrador">
+
+<input
+type="password"
+id="pass"
+placeholder="Senha">
+
+<button onclick="login()">
+ENTRAR
+</button>
+
+<button
+class="cancel-btn"
+onclick="closeLogin()">
+
+Cancelar
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ADMIN -->
+
+<section class="admin-panel" id="adminPanel">
+
+<h2 class="admin-title">
+Dashboard Admin
+</h2>
+
+<div class="admin-form">
+
+<h3>Adicionar Categoria</h3>
+
+<input
+type="text"
+id="newCategory"
+placeholder="Nova categoria">
+
+<button onclick="addCategory()">
+Adicionar Categoria
+</button>
+
+</div>
+
+<div class="admin-form">
+
+<h3>Adicionar Produto</h3>
+
+<input
+type="text"
+id="productName"
+placeholder="Nome do produto">
+
+<input
+type="text"
+id="productPrice"
+placeholder="Preço">
+
+<input
+type="text"
+id="productImage"
+placeholder="URL da imagem">
+
+<textarea
+id="productDesc"
+placeholder="Descrição"></textarea>
+
+<select id="productCategory"></select>
+
+<button onclick="addProduct()">
+Adicionar Produto
+</button>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Nome</th>
+<th>Preço</th>
+<th>Categoria</th>
+<th>Ações</th>
+</tr>
+
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</section>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+/* SUPABASE */
+
+const supabase = createClient(
+"https://ulwjtmefhlhsvshckbwn.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsd2p0bWVmaGxoc3ZzaGNrYnduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5OTkwNDEsImV4cCI6MjA5NTU3NTA0MX0.U8P95xMhOZrNM5I1crr0rsQPe2Sdym_MvOpKDvb6XHs"
+);
+
+/* VARIÁVEIS */
+
+let products=[];
+
+window.addCategory = async () => {
+
+const input = document.getElementById("newCategory");
+const value = input.value.trim();
+
+if(!value){
+alert("Escreve uma categoria");
+return;
+}
+
+/* cria um produto “placeholder” para garantir categoria existe */
+const { error } = await supabase
+.from("produtos")
+.insert([{
+name: "Categoria",
+price: "",
+image: "",
+description: "",
+category: value
+}]);
+
+if(error){
+console.log(error);
+alert("Erro ao criar categoria");
+return;
+}
+
+alert("Categoria adicionada 👑");
+
+input.value = "";
+await loadProducts();
+
+};
+
+let isAdmin=false;
+
+/* LOGIN */
+function showHomeState(){
+
+document.getElementById("hero").style.display = "flex";
+document.getElementById("menu").style.display = "none";
+document.getElementById("adminPanel").style.display = "none";
+document.getElementById("logoutBtn").style.display = "none";
+
+}
+
+window.openLogin=()=>{
+document.getElementById("loginScreen")
+.style.display="flex";
+};
+
+window.closeLogin=()=>{
+document.getElementById("loginScreen")
+.style.display="none";
+};
+
+window.login = async () => {
+
+const email =
+document.getElementById("user").value.trim();
+
+const password =
+document.getElementById("pass").value;
+
+const { data, error } =
+await supabase.auth.signInWithPassword({
+email,
+password
+});
+
+if(error){
+
+alert("Email ou senha incorretos.");
+console.log(error);
+return;
+
+}
+
+isAdmin = true;
+
+document.getElementById("loginScreen")
+.style.display = "none";
+
+document.getElementById("adminPanel")
+.style.display = "block";
+
+document.getElementById("logoutBtn")
+.style.display = "inline-block";
+
+await loadProducts();
+
+};
+
+window.filterByCategory = () => {
+
+const value = document.getElementById("categorySelect").value;
+
+if(value === "all"){
+renderProducts();
+return;
+}
+
+const filtered = products.filter(p => p.category === value);
+
+renderFilteredProducts(filtered);
+
+};
+
+/* LOGOUT */
+
+window.logoutAdmin = async () => {
+
+await supabase.auth.signOut();
+
+isAdmin = false;
+
+document.getElementById("adminPanel")
+.style.display = "none";
+
+document.getElementById("logoutBtn")
+.style.display = "none";
+
+renderProducts();
+
+};
+
+/* MENU */
+
+window.openMenu=()=>{
+
+document.getElementById("hero")
+.style.display="none";
+
+document.getElementById("menu")
+.style.display="block";
+
+renderProducts();
+
+};
+
+function renderFilteredProducts(list){
+
+const container = document.getElementById("menuContainer");
+container.innerHTML = "";
+
+const grouped = list.reduce((acc, p) => {
+acc[p.category] = acc[p.category] || [];
+acc[p.category].push(p);
+return acc;
+}, {});
+
+Object.keys(grouped).forEach(category => {
+
+container.innerHTML += `
+<h2 class="category-title">${category}</h2>
+<div class="products">
+${grouped[category].map(product => `
+<div class="card">
+<img src="${product.image}">
+<div class="card-content">
+<h3>${getName(product)}</h3>
+<p>${getDesc(product)}</p>
+<div class="price">${product.price}</div>
+</div>
+</div>
+`).join("")}
+</div>
+`;
+});
+
+}
+
+window.goHome=()=>{
+
+document.getElementById("hero")
+.style.display="flex";
+
+document.getElementById("menu")
+.style.display="none";
+
+};
+
+/* GET NAME */
+
+function getName(p){
+
+return (
+p.name ||
+p.nome ||
+"Sem nome"
+);
+
+}
+
+/* GET DESC */
+
+function getDesc(p){
+
+return (
+p.description ||
+p.desc ||
+"Sem descrição"
+);
+
+}
+
+/* LOAD */
+
+async function loadProducts(){
+
+const { data,error } =
+await supabase
+.from("produtos")
+.select("*");
+
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
+products = data || [];
+
+console.log(products);
+
+renderProducts();
+
+renderTable();
+
+fillCategories();
+
+}
+
+/* FILL CATEGORIES */
+
+function fillCategories(){
+
+const select = document.getElementById("categorySelect");
+const adminSelect = document.getElementById("productCategory");
+
+if(!select || !adminSelect) return;
+
+const uniqueCategories = [
+...new Set(
+products
+.filter(p => p.category && p.category.trim() !== "")
+.map(p => p.category)
+)
+];
+
+select.innerHTML = `<option value="all">Todas as categorias</option>`;
+adminSelect.innerHTML = "";
+
+uniqueCategories.forEach(cat => {
+
+select.innerHTML += `<option value="${cat}">${cat}</option>`;
+adminSelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+
+});
+
+}
+
+/* ADD CATEGORY */
+
+window.addCategory = () => {
+
+const input = document.getElementById("newCategory");
+const value = input.value.trim();
+
+if(!value){
+alert("Escreve uma categoria");
+return;
+}
+
+// evitar duplicados
+const exists = [...new Set(products.map(p => p.category))].includes(value);
+
+if(exists){
+alert("Essa categoria já existe");
+return;
+}
+
+// adiciona localmente (não Supabase)
+products.push({
+name: "",
+price: "",
+image: "",
+description: "",
+category: value
+});
+
+fillCategories();
+renderProducts();
+
+input.value = "";
+
+alert("Categoria criada 👑");
+
+};
+
+/* ADD PRODUCT */
+
+window.addProduct=async()=>{
+
+const product={
+
+name:
+document.getElementById(
+"productName"
+).value.trim(),
+
+price:
+document.getElementById(
+"productPrice"
+).value.trim(),
+
+image:
+document.getElementById(
+"productImage"
+).value.trim(),
+
+description:
+document.getElementById(
+"productDesc"
+).value.trim(),
+
+category:
+document.getElementById("productCategory").value || "Sem categoria"
+
+};
+
+if(!product.name){
+
+alert("Digite o nome.");
+
+return;
+
+}
+
+const { error } =
+await supabase
+.from("produtos")
+.insert([product]);
+
+if(error){
+
+console.log(error);
+
+alert("Erro ao adicionar.");
+
+return;
+
+}
+
+alert("Produto adicionado 👑");
+
+/* LIMPAR */
+
+document.getElementById(
+"productName"
+).value="";
+
+document.getElementById(
+"productPrice"
+).value="";
+
+document.getElementById(
+"productImage"
+).value="";
+
+document.getElementById(
+"productDesc"
+).value="";
+
+/* RELOAD */
+
+await loadProducts();
+
+};
+
+/* REMOVE */
+
+window.removeProduct=async(id)=>{
+
+const { error } =
+await supabase
+.from("produtos")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert("Erro ao remover.");
+
+return;
+
+}
+
+await loadProducts();
+
+};
+
+/* TABLE */
+
+function renderTable(){
+
+const body =
+document.getElementById(
+"tableBody"
+);
+
+body.innerHTML="";
+
+products.forEach(product=>{
+
+body.innerHTML += `
+
+<tr>
+
+<td>
+${getName(product)}
+</td>
+
+<td>
+${product.price || "-"}
+</td>
+
+<td>
+${product.category || "-"}
+</td>
+
+<td>
+
+<button
+onclick="removeProduct('${product.id}')"
+style="
+background:red;
+color:white;
+border:none;
+padding:8px 10px;
+border-radius:8px;
+cursor:pointer;
+">
+
+Remover
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+/* MENU */
+
+function renderProducts(){
+
+const container =
+document.getElementById(
+"menuContainer"
+);
+
+container.innerHTML="";
+
+const uniqueCategories=[
+...new Set(
+products.map(
+p=>p.category
+)
+)
+];
+
+uniqueCategories.forEach(category=>{
+
+const filtered =
+products.filter(
+p=>p.category===category
+);
+
+container.innerHTML += `
+
+<h2 class="category-title">
+${category}
+</h2>
+
+<div class="products">
+
+${filtered.map(product=>`
+
+<div class="card">
+
+<img src="${product.image}">
+
+<div class="card-content">
+
+<h3>
+${getName(product)}
+</h3>
+
+<p>
+${getDesc(product)}
+</p>
+
+<div class="price">
+${product.price}
+</div>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+`;
+
+});
+
+/* FOOTER */
+
+container.innerHTML += `
+
+<div class="footer-box">
+
+<h4>📞 Contato</h4>
+<p>+244 925 467 987</p>
+
+<h4>📍 Localização</h4>
+<p>Huambo Rua do Hospital frente a escola nº34</p>
+
+<h4>🕒 Horário</h4>
+<p>07:00 às 21:30</p>
+
+<p style="
+margin-top:12px;
+opacity:0.6;
+">
+Criado por A-M-I Code
+</p>
+
+</div>
+
+`;
+
+}
+
+/* INIT */
+
+async function checkSession(){
+
+const {
+data:{session}
+} = await supabase.auth.getSession();
+
+if(session){
+
+isAdmin = true;
+
+document.getElementById("adminPanel")
+.style.display = "block";
+
+document.getElementById("logoutBtn")
+.style.display = "inline-block";
+
+}
+
+}
+
+showHomeState();
+checkSession();
+loadProducts();
+
+</script>
+
+</body>
+</html>
+```
